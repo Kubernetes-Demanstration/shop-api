@@ -7,7 +7,7 @@ pipeline {
      // get curretn commit sha, command 'git rev-parse HEAD' return full sha
      // if you wanna push image to dockerhub, image name must be unique
      GITCOMMITSHA = sh(returnStdout: true, script: "git log -n 1 --pretty=format:'%h'").trim()
-     SERVICE_NAME = "shopAPI""
+     SERVICE_NAME = "shopAPI"
      
    
    }
