@@ -1,11 +1,11 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: shopAPI
+  name: shop-api
 spec:
   selector:
     matchLabels:
-      app: shopAPI
+      app: shop-api
   replicas: 1
   template: # template for the pods
     metadata:
@@ -13,9 +13,9 @@ spec:
         app: shop-api
     spec:
       containers:
-      - name: shopAPI
+      - name: shop-api
         # env:
-        image: shopAPI
+        image: shop-api
         # pull image from remote server ? 
         imagePullPolicy: Never
         readinessProbe:
