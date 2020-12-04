@@ -15,12 +15,12 @@ spec:
       containers:
       - name: shop-api
         env:
-          - name: ConnectionStrings:DefaultConnection
+          - name: ConnectionStrings_DefaultConnection
             valueFrom:
               secretKeyRef:
                 name: user-pass
                 key: store-connectionstring
-          - name: ConnectionStrings:IdentityConnection
+          - name: ConnectionStrings_IdentityConnection
             valueFrom:
               secretKeyRef:
                 name: user-pass
