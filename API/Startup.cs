@@ -22,7 +22,7 @@ namespace API
         private readonly IConfiguration _configuration;
         public Startup(IConfiguration configuration)
         {
-            _configuration = configuration;
+            _configuration =configuration;
         }
 
 
