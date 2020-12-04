@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text.Json;
 using Core.Entities;
 using Core.Entities.OrderAggregate;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Data.SeedData
 {
@@ -20,9 +21,18 @@ namespace Infrastructure.Data.SeedData
                 {
                     // the root path is base on where the folder you run the app
                     // so the root is API project's folder
-                    var brandsData = File.ReadAllText("../Infrastructure/Data/SeedData/brands.json"); 
+                    //var brandsData = File.ReadAllText("../Infrastructure/Data/SeedData/brands.json"); 
 
-                    var brands = JsonSerializer.Deserialize<List<ProductBrand>>(brandsData);
+                    //var brands = JsonSerializer.Deserialize<List<ProductBrand>>(brandsData);
+                    var brands = new List<ProductBrand>()
+                    {
+                        new ProductBrand(){Name ="Angular" },
+                        new ProductBrand(){Name ="NetCore" },
+                        new ProductBrand(){Name ="VS Code" },
+                        new ProductBrand(){Name ="React" },
+                        new ProductBrand(){Name ="Typescript" },
+                        new ProductBrand(){Name ="Redis" },
+                    };
                     brands.ForEach(p =>
                     {
                         context.ProductBrands.Add(p);
@@ -31,13 +41,22 @@ namespace Infrastructure.Data.SeedData
 
                 if (!context.ProductTypes.Any())
                 {
-                    var typesData = File.ReadAllText("../Infrastructure/Data/SeedData/types.json");
+                   // var typesData = File.ReadAllText("../Infrastructure/Data/SeedData/types.json");
 
-                    var types = JsonSerializer.Deserialize<List<ProductType>>(typesData);
+                  //  var types = JsonSerializer.Deserialize<List<ProductType>>(typesData);
+                  var types = new List<ProductType>()
+                  {
+                      new ProductType(){Name = "Boards"},
+                      new ProductType(){Name = "Hats"},
+                      new ProductType(){Name = "Boots"},
+                      new ProductType(){Name = "Gloves"},
+                  };
                     types.ForEach(p =>
                     {
                         context.ProductTypes.Add(p);
                     });
+
+                   
                 }
 
                 if (!context.Products.Any())
@@ -45,6 +64,7 @@ namespace Infrastructure.Data.SeedData
                     var productsData = File.ReadAllText("../Infrastructure/Data/SeedData/products.json");
 
                     var products = JsonSerializer.Deserialize<List<Product>>(productsData);
+
                     products.ForEach(p =>
                     {
                         context.Products.Add(p);
@@ -60,9 +80,13 @@ namespace Infrastructure.Data.SeedData
                     {
                         context.DeliveryMethods.Add(d);
                     });
-                }
 
+                 
+                }
                 await context.SaveChangesAsync();
+
+
+
             }
             catch (Exception e)
             {
