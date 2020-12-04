@@ -33,7 +33,7 @@ spec:
         imagePullPolicy: Never
         readinessProbe:
           httpGet:
-            path: /
+            path: /WeatherForecast
             port: 5000
 ---
 apiVersion: v1
