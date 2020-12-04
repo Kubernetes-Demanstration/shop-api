@@ -9,6 +9,7 @@ spec:
   replicas: 1
   template: # template for the pods
     metadata:
+      name: shop-api
       labels:
         app: shop-api
     spec:
