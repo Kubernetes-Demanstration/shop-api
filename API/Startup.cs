@@ -126,7 +126,7 @@ namespace API
         private readonly IConfiguration _configuration;
         public StartupDevelopment(IConfiguration configuration)
         {
-            _configuration = configuration;
+            _configuration =configuration;
         }
 
 
