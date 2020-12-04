@@ -18,6 +18,10 @@
     <PackageReference Include="Stripe.net" Version="39.28.0" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.8.0" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Data\Migrations\" />
+    <Folder Include="Identity\Migrations\" />
+  </ItemGroup>
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
   </PropertyGroup>

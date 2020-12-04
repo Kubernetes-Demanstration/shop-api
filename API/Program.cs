@@ -63,7 +63,7 @@ namespace API
 
                     // webBuilder.UseStartup<Startup>();
                     webBuilder.UseStartup(assemblyName);
-                    
+                    webBuilder.UseUrls("http://+:5000");
                 });
     }
 }

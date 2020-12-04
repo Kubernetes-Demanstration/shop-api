@@ -137,11 +137,11 @@ namespace API
 
             services.AddDbContext<StoreContext>(options =>
             {
-                options.UseSqlite(_configuration.GetConnectionString("DefaultConnection"));
+                options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection"));
             });
             services.AddDbContext<AppIdentityDbContext>(options =>
             {
-                options.UseSqlite(_configuration.GetConnectionString("IdentityConnection"));
+                options.UseSqlServer(_configuration.GetConnectionString("IdentityConnection"));
             });
 
             services.AddSingleton<IConnectionMultiplexer, ConnectionMultiplexer>(config =>

@@ -14,6 +14,7 @@ namespace Infrastructure.Data.EntitiesConfiguration
             builder.Property(s => s.OrderStatus).HasConversion(o => o.ToString(),
                 o => (OrderStatus) Enum.Parse(typeof(OrderStatus),o));
             builder.HasMany(o => o.OrderItems).WithOne().OnDelete(DeleteBehavior.Cascade);// delete order will delete its item(s)
+            builder.Property(x => x.Subtotal).HasColumnType("money");
         }
     }
 }
