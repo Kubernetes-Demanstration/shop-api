@@ -14,7 +14,17 @@ spec:
     spec:
       containers:
       - name: shop-api
-        # env:
+        env:
+          - name: ConnectionStrings:DefaultConnection
+            valueFrom:
+              secretKeyRef:
+                name: user-pass
+                key: store-connectionstring
+          - name: ConnectionStrings:IdentityConnection
+            valueFrom:
+              secretKeyRef:
+                name: user-pass
+                key: identity-connectionstring
         image: shop-api
         # pull image from remote server ? 
         imagePullPolicy: Never
