@@ -12,8 +12,9 @@ RUN dotnet restore API/API.csproj
 
 # copy and build app and libraries
 COPY API/ API/
-
-WORKDIR /source/API/
+COPY Infrastructure/ Infrastructure/
+COPY Core/ Core/
+WORKDIR /source/API
 RUN dotnet build -c release --no-restore
 
 # test stage -- exposes optional entrypoint
