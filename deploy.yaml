@@ -15,12 +15,15 @@ spec:
       containers:
       - name: shop-api
         env:
-          - name: ConnectionStrings_DefaultConnection
+          # it should be "ConnectionStrings:DefaultConnection" 
+          # For .Net Core, the current (ugly) workaround is to use double underscores
+          # https://github.com/kubernetes/kubernetes/issues/53201 
+          - name: ConnectionStrings__DefaultConnection
             valueFrom:
               secretKeyRef:
                 name: user-pass
                 key: store-connectionstring
-          - name: ConnectionStrings_IdentityConnection
+          - name: ConnectionStrings__IdentityConnection
             valueFrom:
               secretKeyRef:
                 name: user-pass
