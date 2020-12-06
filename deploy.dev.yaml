@@ -18,19 +18,6 @@ spec:
         env:
           - name: ASPNETCORE_ENVIRONMENT
             value: "Development"
-          # it should be "ConnectionStrings:DefaultConnection" 
-          # For .Net Core, the current (ugly) workaround is to use double underscores
-          # https://github.com/kubernetes/kubernetes/issues/53201 
-          - name: ConnectionStrings__DefaultConnection
-            valueFrom:
-              secretKeyRef:
-                name: user-pass
-                key: store-connectionstring
-          - name: ConnectionStrings__IdentityConnection
-            valueFrom:
-              secretKeyRef:
-                name: user-pass
-                key: identity-connectionstring
         image: shop-api
         # pull image from remote server ? 
         imagePullPolicy: Never
