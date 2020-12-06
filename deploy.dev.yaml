@@ -19,6 +19,10 @@ spec:
           - name: ASPNETCORE_ENVIRONMENT
             value: "Development"
         image: shop-api
+        resources:
+          requests: 
+            memory: 100Mi
+            cpu: 50m
         # pull image from remote server ? 
         imagePullPolicy: Never
         readinessProbe:
