@@ -44,6 +44,7 @@ spec:
     - name: http
       port: 5000
       targetPort: 5000
-  type: ClusterIP
+      nodePort: 35000
+  type: NodePort
      
 
