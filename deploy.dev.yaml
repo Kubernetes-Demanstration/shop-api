@@ -48,7 +48,8 @@ spec:
     - name: http
       port: 5000
       targetPort: 5000
-      nodePort: 35000
+      # default port range: 30000-32767
+      nodePort: 30001
   type: NodePort
      
 
