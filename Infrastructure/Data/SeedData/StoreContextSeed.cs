@@ -38,6 +38,7 @@ namespace Infrastructure.Data.SeedData
                         context.ProductBrands.Add(p);
                     });
                 }
+                await context.SaveChangesAsync();
 
                 if (!context.ProductTypes.Any())
                 {
@@ -58,7 +59,7 @@ namespace Infrastructure.Data.SeedData
 
                    
                 }
-
+                await context.SaveChangesAsync();
                 if (!context.Products.Any())
                 {
                     var productsData = File.ReadAllText("../Infrastructure/Data/SeedData/products.json");
@@ -70,7 +71,7 @@ namespace Infrastructure.Data.SeedData
                         context.Products.Add(p);
                     });
                 }
-
+                await context.SaveChangesAsync();
                 if (!context.DeliveryMethods.Any())
                 {
                     var deliveryMethodsData = await File.ReadAllTextAsync("../Infrastructure/Data/SeedData/delivery.json");
