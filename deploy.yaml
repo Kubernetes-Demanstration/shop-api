@@ -34,6 +34,8 @@ spec:
               secretKeyRef:
                 name: user-pass
                 key: identity-connectionstring
+       #  options: Always、OnFailure and Never, default: Always    
+      restartPolicy: OnFailure
         image: shop-api
         # pull image from remote server ? 
         imagePullPolicy: Never
