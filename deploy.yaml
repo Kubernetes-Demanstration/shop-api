@@ -7,6 +7,11 @@ spec:
     matchLabels:
       app: shop-api
   replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
   template: # template for the pods
     metadata:
       name: shop-api
