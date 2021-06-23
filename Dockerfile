@@ -1,7 +1,9 @@
-# 3.1 (238MB) vs 3.1-alpine (138MB)
-FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
-# mcr.microsoft.com/dotnet/core/aspnet:3.1 | ASP.NET Core, with runtime only and ASP.NET Core optimizations, on Linux and Windows (multi-arch)
-# mcr.microsoft.com/dotnet/core/sdk:3.1    |.NET Core, with SDKs included, on Linux and Windows (multi-arch) | Size after build:238MB
+
+FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
+# store connectionstring
+ARG StoreConnection
+# Identity connectionstring
+ARG IdentityConnection
 WORKDIR /source
 
 # copy csproj and restore as distinct layers
@@ -17,6 +19,14 @@ COPY Core/ Core/
 WORKDIR /source/API
 RUN dotnet build -c release --no-restore
 
+# db migration
+WORKDIR /source
+
+RUN dotnet ef database update  --connection $StoreConnection --project Infrastructure --startup-project API --context StoreContext
+
+RUN dotnet ef database update  --connection $IdentityConnection --project Infrastructure --startup-project API --context AppIdentityDbContext
+
+
 # test stage -- exposes optional entrypoint
 # target entrypoint with: docker build --target test
 # FROM build AS test
@@ -24,12 +34,15 @@ RUN dotnet build -c release --no-restore
 # COPY ERP-API.Test/ .
 # ENTRYPOINT ["dotnet", "test", "--logger:trx"]
 
+
+
+
 FROM build AS publish
 RUN dotnet publish -c release --no-build -o /app
 
 # final stage/image
-# 3.1
-FROM mcr.microsoft.com/dotnet/core/aspnet:3.1
+
+FROM mcr.microsoft.com/dotnet/aspnet:5.0
 WORKDIR /app
 COPY --from=publish /app .
 ENTRYPOINT ["dotnet", "API.dll"]
